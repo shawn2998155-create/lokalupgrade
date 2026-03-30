@@ -777,11 +777,11 @@ function submitForm() {
     Nachricht: message
   };
 
-  fetch('https://script.google.com/macros/s/AKfycbzYyPC511oA07DEACrzigzyuRc3i5XOHr5lWb375L5n3t8XyB1gXm1AUmKnzkTEf9PB/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbyOp1hXxH2V4S9zPu90d18-Qi7jjwTsw481V8o63hkZPkHRwfpnmx3WInW1Eo5InxBU/exec', {
     method: 'POST',
     headers: {
       'Content-Type': 'text/plain;charset=utf-8'
-    },
+    },      
     body: JSON.stringify(payload),
     redirect: 'follow'   // important for GAS
   })
