@@ -752,7 +752,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ==================== FORM SUBMIT ====================
+// ==================== FORM SUBMIT (CORS-safe) ====================
 function submitForm() {
   const name = document.getElementById('fname').value.trim();
   const email = document.getElementById('femail').value.trim();
@@ -765,30 +765,46 @@ function submitForm() {
   }
 
   const btn = document.querySelector('#formWrap .btn-primary');
+  const originalBtnText = btn.innerHTML;
   btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> <span>Senden...</span>';
   btn.disabled = true;
 
-  const formData = new FormData();
-  formData.append('Name', name);
-  formData.append('Email', email);
-  formData.append('Telefon', phone);
-  formData.append('Nachricht', message);
+  // Send as JSON with text/plain to avoid preflight CORS issues
+  const payload = {
+    Name: name,
+    Email: email,
+    Telefon: phone || "",
+    Nachricht: message
+  };
 
   fetch('https://script.google.com/macros/s/AKfycbzYyPC511oA07DEACrzigzyuRc3i5XOHr5lWb375L5n3t8XyB1gXm1AUmKnzkTEf9PB/exec', {
     method: 'POST',
-    body: formData
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify(payload),
+    redirect: 'follow'   // important for GAS
   })
-  .then(() => {
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+  .then(response => response.text())
+  .then(text => {
+    console.log("Server response:", text);   // for debugging
+
+    if (text.includes("Success") || text.toLowerCase().includes("success")) {
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      throw new Error("Server returned: " + text);
+    }
   })
-  .catch(() => {
-    // Show success even on CORS error (GAS common behavior)
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+  .catch(err => {
+    console.error("Fetch error:", err);
+    btn.innerHTML = originalBtnText;
+    btn.disabled = false;
+    alert(currentLang.val === 'de'
+      ? 'Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per WhatsApp.'
+      : 'Error sending. Please try again or contact us via WhatsApp.');
   });
 }
 </script>
-
 </body>
 </html>
