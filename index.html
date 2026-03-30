@@ -535,7 +535,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
             <div class="contact-icon"><i class="fa fa-envelope"></i></div>
             <div class="contact-detail-text">
               <strong>E-Mail</strong>
-              <span>shun.liang@outlook.com</span>
+              <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a2d1cad7cc8ccecbc3ccc5e2cdd7d6cecdcdc98cc1cdcf">[email&#160;protected]</a></span>
             </div>
           </div>
           <div class="contact-detail">
@@ -557,12 +557,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
             <a href="https://wa.me/41766267205" target="_blank" class="btn btn-wa btn-sm">
               <i class="fab fa-whatsapp"></i> WhatsApp            
             </a>
-            <a href="mailto:shun.liang@outlook.com" class="btn btn-ghost btn-sm">
+            <a href="/cdn-cgi/l/email-protection#b0c3d8c5de9edcd9d1ded7f0dfc5c4dcdfdfdb9ed3dfdd" class="btn btn-ghost btn-sm">
               <i class="fa fa-envelope"></i> E-Mail
             </a>
-            <a href="mailto:shun.liang@outlook.com?subject=Teams%20Meeting" class="btn btn-ghost btn-sm">
-              <i class="fab fa-microsoft"></i> MS Teams
-            </a>
+           
           </div>
 
           <!-- Social links -->
@@ -581,32 +579,32 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
               <h3 data-de="Anfrage gesendet!" data-en="Request sent!">Anfrage gesendet!</h3>
               <p style="color:var(--muted);margin-top:.5rem" data-de="Ich melde mich so schnell wie möglich bei Ihnen." data-en="I will get back to you as soon as possible.">Ich melde mich so schnell wie möglich bei Ihnen.</p>
             </div>
-            <div id="formWrap">
+            <form id="contactForm" onsubmit="submitForm(event)">
               <h3 style="margin-bottom:1.5rem;font-size:1.2rem" data-de="Kostenlose Anfrage" data-en="Free Inquiry">Kostenlose Anfrage</h3>
               <div class="form-group">
                 <label data-de="Name *" data-en="Name *">Name *</label>
-                <input type="text" id="fname" placeholder="Max Mustermann" required />
+                <input type="text" id="fname" name="Name" placeholder="Max Mustermann" required />
               </div>
               <div class="form-group">
                 <label>E-Mail *</label>
-                <input type="email" id="femail" placeholder="max@beispiel.ch" required />
+                <input type="email" id="femail" name="Email" placeholder="max@beispiel.ch" required />
               </div>
               <div class="form-group">
                 <label data-de="Telefon" data-en="Phone">Telefon</label>
-                <input type="tel" id="fphone" placeholder="+41 xx xxx xx xx" />
+                <input type="tel" id="fphone" name="Telefon" placeholder="+41 xx xxx xx xx" />
               </div>
               <div class="form-group">
                 <label data-de="Nachricht *" data-en="Message *">Nachricht *</label>
-                <textarea id="fmessage" placeholder="Beschreiben Sie kurz Ihr Anliegen..." required></textarea>
+                <textarea id="fmessage" name="Nachricht" placeholder="Beschreiben Sie kurz Ihr Anliegen..." required></textarea>
               </div>
-              <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm()">
+              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
                 <i class="fa fa-paper-plane"></i>
                 <span data-de="Jetzt anfragen – kostenlos & unverbindlich" data-en="Request now – free & non-binding">Jetzt anfragen – kostenlos & unverbindlich</span>
               </button>
               <p class="form-privacy" data-de="Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben. Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zu." data-en="Your data will be treated confidentially and not passed on to third parties. By submitting, you agree to the processing of your data.">
                 Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben. Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zu.
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -637,23 +635,23 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
           </a>
         </div>
 
-        <div class="glass partner-card reveal" style="transition-delay:.2s">
-          <div class="partner-icon">🎁</div>
-          <h3>Poinz</h3>
-          <p data-de="Cashback-App – Freunde einladen & verdienen" data-en="Cashback app – invite friends & earn">Cashback-App – Freunde einladen & verdienen</p>
-          <div class="partner-code">REF50-WONT</div><br>
-          <a href="https://poinz.ch/en/blog/invite-friends-earn-cashback" target="_blank" class="btn btn-ghost btn-sm">
-            <i class="fa fa-gift"></i>
-            <span data-de="Cashback sichern" data-en="Claim Cashback">Cashback sichern</span>
-          </a>
-        </div>
-
-        <div class="glass partner-card reveal">
+         <div class="glass partner-card reveal">
           <div class="partner-icon">🛒</div>
           <h3 data-de="Facebook Marketplace" data-en="Facebook Marketplace">Facebook Marketplace</h3>
           <p data-de="Produkte & Dienstleistungen direkt finden" data-en="Find products & services directly">Produkte & Dienstleistungen direkt finden</p>
-          <a href="https://www.facebook.com/marketplace/item/1255708835893514/" target="_blank" class="btn btn-ghost btn-sm" style="margin-top:.5rem">
+          <a href="https://www.facebook.com/marketplace/profile/61588511841744/" target="_blank" class="btn btn-ghost btn-sm" style="margin-top:.5rem">
             <i class="fab fa-facebook"></i>
+            <span data-de="Zum Angebot" data-en="View Listing">Zum Angebot</span>
+          </a>
+        </div>
+
+<div class="glass partner-card reveal" style="transition-delay:.2s">
+          <div class="partner-icon">🎁</div>
+          <h3>Ebook Amazon</h3>
+          <p data-de="THE COIN KEEPERS</p>
+           <p data-de="Produkte direkt finden" data-en="Find products directly">Produkte direkt finden</p>
+          <a href="https://www.amazon.de/-/en/dp/B0GRS169ZQ?binding=kindle_edition&ref_=saga_dp_bnx_dsk_sdp&qid=1774873014&sr=1-1" target="_blank" class="btn btn-ghost btn-sm" style="margin-top:.5rem">
+            <i class="fa fa-gift"></i>
             <span data-de="Zum Angebot" data-en="View Listing">Zum Angebot</span>
           </a>
         </div>
@@ -687,7 +685,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ==================== LANGUAGE SYSTEM ====================
 const currentLang = { val: 'de' };
 
@@ -755,7 +753,9 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ==================== FORM SUBMIT ====================
-function submitForm() {
+function submitForm(e) {
+  e.preventDefault();
+
   const name = document.getElementById('fname').value.trim();
   const email = document.getElementById('femail').value.trim();
   const phone = document.getElementById('fphone').value.trim();
@@ -766,7 +766,7 @@ function submitForm() {
     return;
   }
 
-  const btn = document.querySelector('#formWrap .btn-primary');
+  const btn = document.querySelector('#contactForm button[type="submit"]');
   btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> <span>Senden...</span>';
   btn.disabled = true;
 
@@ -776,21 +776,19 @@ function submitForm() {
   formData.append('Telefon', phone);
   formData.append('Nachricht', message);
 
+  const showSuccess = () => {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  };
+
   fetch('https://script.google.com/macros/s/AKfycbzYyPC511oA07DEACrzigzyuRc3i5XOHr5lWb375L5n3t8XyB1gXm1AUmKnzkTEf9PB/exec', {
     method: 'POST',
+    mode: 'no-cors',
     body: formData
   })
-  .then(() => {
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  })
-  .catch(() => {
-    // Show success even on CORS error (GAS common behavior)
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  });
+  .then(showSuccess)
+  .catch(showSuccess);
 }
 </script>
-
 </body>
 </html>
