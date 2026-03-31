@@ -494,6 +494,21 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
           <span data-de="Webseite besuchen" data-en="Visit Website">Webseite besuchen</span>
         </a>
       </div>
+
+      <!-- Spark AI Companion Demo -->
+      <div class="glass ref-card reveal" style="transition-delay: 0.2s;">
+        <div class="ref-logo">
+          <i class="fa fa-robot"></i>
+          <span>Spark – AI Companion</span>
+        </div>
+        <p class="ref-quote" data-de="Dein KI-Begleiter, der dich zu einer besseren Version deiner selbst macht. Duolingo trifft Tamagotchi – dein Pet wächst nur, wenn du wächst." data-en="Your AI companion that makes you a better person. Duolingo meets Tamagotchi – your pet grows only when you do.">
+          Dein KI-Begleiter, der dich zu einer besseren Version deiner selbst macht. Duolingo trifft Tamagotchi – dein Pet wächst nur, wenn du wächst.
+        </p>
+        <a href="javascript:void(0)" onclick="openSparkDemo()" class="btn btn-primary btn-sm">
+          <i class="fa fa-play"></i>
+          <span data-de="Demo testen" data-en="Try Demo">Demo testen</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -795,3 +810,439 @@ function submitForm() {
 </script>
 </body>
 </html>
+
+
+<!-- ===================== SPARK DEMO MODAL ===================== -->
+<style>
+.spark-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+.spark-modal.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.spark-modal-content {
+  background: var(--bg2);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  max-width: 90vw;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spark-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: var(--trans);
+  z-index: 2001;
+}
+
+.spark-modal-close:hover {
+  color: var(--blue);
+  transform: rotate(90deg);
+}
+
+.spark-demo-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.spark-demo-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.spark-demo-header i {
+  font-size: 2rem;
+  color: var(--blue);
+}
+
+.spark-demo-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.spark-demo-tab {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--trans);
+  border-bottom: 2px solid transparent;
+  position: relative;
+  bottom: -1px;
+}
+
+.spark-demo-tab:hover {
+  color: var(--text);
+}
+
+.spark-demo-tab.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.spark-demo-content {
+  display: none;
+}
+
+.spark-demo-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.spark-qr-section {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(61, 159, 255, 0.05);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+}
+
+.spark-qr-section h3 {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.spark-qr-section p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.spark-qr-code {
+  display: inline-block;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.spark-qr-code img {
+  width: 240px;
+  height: 240px;
+}
+
+.spark-web-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.spark-web-info {
+  padding: 1.5rem;
+  background: rgba(61, 159, 255, 0.05);
+  border-radius: var(--r);
+  border-left: 3px solid var(--blue);
+}
+
+.spark-web-info h4 {
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.spark-web-info p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.spark-web-demo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.2rem 2rem;
+  background: var(--grad);
+  color: white;
+  border: none;
+  border-radius: 99px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--trans);
+  box-shadow: 0 0 26px var(--glow-b);
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.spark-web-demo-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 42px var(--glow-b);
+}
+
+.spark-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.spark-feature {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  transition: var(--trans);
+}
+
+.spark-feature:hover {
+  background: rgba(61, 159, 255, 0.08);
+  border-color: var(--blue);
+  transform: translateY(-4px);
+}
+
+.spark-feature-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  color: var(--blue);
+}
+
+.spark-feature h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.spark-feature p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .spark-modal-content {
+    padding: 1.5rem;
+    max-height: 95vh;
+  }
+
+  .spark-demo-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .spark-demo-tabs {
+    flex-wrap: wrap;
+  }
+
+  .spark-qr-code img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .spark-features {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<div id="sparkModal" class="spark-modal">
+  <div class="spark-modal-content">
+    <button class="spark-modal-close" onclick="closeSparkDemo()">&times;</button>
+
+    <div class="spark-demo-header">
+      <i class="fa fa-robot"></i>
+      <h2 data-de="Spark – Dein KI-Begleiter" data-en="Spark – Your AI Companion">Spark – Dein KI-Begleiter</h2>
+    </div>
+
+    <div class="spark-demo-tabs">
+      <button class="spark-demo-tab active" onclick="switchSparkTab('overview')" data-de="Überblick" data-en="Overview">Überblick</button>
+      <button class="spark-demo-tab" onclick="switchSparkTab('qr')" data-de="App testen" data-en="Test App">App testen</button>
+      <button class="spark-demo-tab" onclick="switchSparkTab('web')" data-de="Web Demo" data-en="Web Demo">Web Demo</button>
+    </div>
+
+    <!-- Overview Tab -->
+    <div id="overview-tab" class="spark-demo-content active">
+      <p data-de="Spark ist dein KI-Begleiter, der dich zu einer besseren Version deiner selbst macht. Wie Duolingo trifft Tamagotchi – dein virtuelles Pet wächst nur, wenn du wächst." data-en="Spark is your AI companion that makes you a better person. Like Duolingo meets Tamagotchi – your virtual pet grows only when you do.">
+        Spark ist dein KI-Begleiter, der dich zu einer besseren Version deiner selbst macht. Wie Duolingo trifft Tamagotchi – dein virtuelles Pet wächst nur, wenn du wächst.
+      </p>
+
+      <div class="spark-features" style="margin-top: 2rem;">
+        <div class="spark-feature">
+          <div class="spark-feature-icon">🐾</div>
+          <h4 data-de="Pet-Progression" data-en="Pet Progression">Pet-Progression</h4>
+          <p data-de="Dein Pet durchläuft 6 Entwicklungsstufen – von Ei bis zur Graduation." data-en="Your pet goes through 6 evolution stages – from egg to graduation.">Dein Pet durchläuft 6 Entwicklungsstufen – von Ei bis zur Graduation.</p>
+        </div>
+
+        <div class="spark-feature">
+          <div class="spark-feature-icon">🔥</div>
+          <h4 data-de="Streak-Engine" data-en="Streak Engine">Streak-Engine</h4>
+          <p data-de="Tägliche Check-ins bauen Streaks auf. Die Stimmung deines Pets zeigt den emotionalen Preis des Brechens." data-en="Daily check-ins build streaks. Your pet's mood shows the emotional cost of breaking.">Tägliche Check-ins bauen Streaks auf. Die Stimmung deines Pets zeigt den emotionalen Preis.</p>
+        </div>
+
+        <div class="spark-feature">
+          <div class="spark-feature-icon">💬</div>
+          <h4 data-de="KI-Gespräche" data-en="AI Chat">KI-Gespräche</h4>
+          <p data-de="Tiefe Gespräche mit deinem Pet über deine Gewohnheiten und Fortschritte." data-en="Deep conversations with your pet about your habits and progress.">Tiefe Gespräche mit deinem Pet über deine Gewohnheiten und Fortschritte.</p>
+        </div>
+
+        <div class="spark-feature">
+          <div class="spark-feature-icon">🎓</div>
+          <h4 data-de="Graduation" data-en="Graduation">Graduation</h4>
+          <p data-de="Wenn dein Pet graduiert, bedeutet das: Du hast es geschafft. Feiere und teile deinen Erfolg." data-en="When your pet graduates, it means: You made it. Celebrate and share your success.">Wenn dein Pet graduiert, bedeutet das: Du hast es geschafft. Feiere und teile deinen Erfolg.</p>
+        </div>
+
+        <div class="spark-feature">
+          <div class="spark-feature-icon">📱</div>
+          <h4 data-de="Voice Mode (Pro)" data-en="Voice Mode (Pro)">Voice Mode (Pro)</h4>
+          <p data-de="Sprich mit deinem Pet – KI-gestützte Spracherkennung und Antworten." data-en="Talk to your pet – AI-powered speech recognition and responses.">Sprich mit deinem Pet – KI-gestützte Spracherkennung und Antworten.</p>
+        </div>
+
+        <div class="spark-feature">
+          <div class="spark-feature-icon">🎉</div>
+          <h4 data-de="Teilen & Feiern" data-en="Share & Celebrate">Teilen & Feiern</h4>
+          <p data-de="Teile deine Meilensteine auf Social Media – dein Pet tanzt zur Graduation." data-en="Share your milestones on social media – your pet dances at graduation.">Teile deine Meilensteine auf Social Media – dein Pet tanzt zur Graduation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Tab -->
+    <div id="qr-tab" class="spark-demo-content">
+      <div class="spark-qr-section">
+        <h3 data-de="Mit Expo Go testen" data-en="Test with Expo Go">Mit Expo Go testen</h3>
+        <p data-de="Lade die Expo Go App herunter und scanne diesen QR-Code mit deinem Smartphone." data-en="Download Expo Go and scan this QR code with your smartphone.">Lade die Expo Go App herunter und scanne diesen QR-Code mit deinem Smartphone.</p>
+
+        <div class="spark-qr-code">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=exps://8081-ig4a6ywvo5fhvirwbsr21-3a1cd4c5.us2.manus.computer" alt="Spark App QR Code" />
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;">
+          <strong data-de="Oder kopiere die URL:" data-en="Or copy the URL:">Oder kopiere die URL:</strong><br />
+          <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 6px; display: inline-block; margin-top: 0.5rem; font-size: 0.75rem;">exps://8081-ig4a6ywvo5fhvirwbsr21-3a1cd4c5.us2.manus.computer</code>
+        </p>
+      </div>
+    </div>
+
+    <!-- Web Demo Tab -->
+    <div id="web-tab" class="spark-demo-content">
+      <div class="spark-web-demo">
+        <div class="spark-web-info">
+          <h4 data-de="Web-Version verfügbar" data-en="Web version available">Web-Version verfügbar</h4>
+          <p data-de="Teste Spark direkt in deinem Browser. Alle Kernfunktionen sind verfügbar – Gewohnheits-Tracking, Pet-Progression, KI-Gespräche und mehr." data-en="Test Spark directly in your browser. All core features are available – habit tracking, pet progression, AI chat, and more.">Teste Spark direkt in deinem Browser. Alle Kernfunktionen sind verfügbar – Gewohnheits-Tracking, Pet-Progression, KI-Gespräche und mehr.</p>
+        </div>
+
+        <a href="https://8081-ig4a6ywvo5fhvirwbsr21-3a1cd4c5.us2.manus.computer" target="_blank" class="spark-web-demo-btn">
+          <i class="fa fa-external-link-alt"></i>
+          <span data-de="Web Demo öffnen" data-en="Open Web Demo">Web Demo öffnen</span>
+        </a>
+
+        <div class="spark-web-info">
+          <h4 data-de="Was du testen kannst:" data-en="What you can test:">Was du testen kannst:</h4>
+          <p>
+            ✓ <span data-de="Onboarding & Pet-Erstellung" data-en="Onboarding & pet creation">Onboarding & Pet-Erstellung</span><br />
+            ✓ <span data-de="Gewohnheits-Tracking mit Streak-Engine" data-en="Habit tracking with streak engine">Gewohnheits-Tracking mit Streak-Engine</span><br />
+            ✓ <span data-de="Pet-Stimmung basierend auf Streaks" data-en="Pet mood based on streaks">Pet-Stimmung basierend auf Streaks</span><br />
+            ✓ <span data-de="KI-Chat mit deinem Pet" data-en="AI chat with your pet">KI-Chat mit deinem Pet</span><br />
+            ✓ <span data-de="Meilenstein-Progression" data-en="Milestone progression">Meilenstein-Progression</span><br />
+            ✓ <span data-de="Graduation & Feier" data-en="Graduation & celebration">Graduation & Feier</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openSparkDemo() {
+  document.getElementById('sparkModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSparkDemo() {
+  document.getElementById('sparkModal').classList.remove('open');
+  document.body.style.overflow = 'auto';
+}
+
+function switchSparkTab(tabName) {
+  // Hide all tabs
+  document.querySelectorAll('.spark-demo-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+
+  // Remove active class from all tab buttons
+  document.querySelectorAll('.spark-demo-tab').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Show selected tab
+  const tabId = tabName + '-tab';
+  const tabElement = document.getElementById(tabId);
+  if (tabElement) {
+    tabElement.classList.add('active');
+  }
+
+  // Add active class to clicked button
+  event.target.classList.add('active');
+}
+
+// Close modal when clicking outside
+document.getElementById('sparkModal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeSparkDemo();
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeSparkDemo();
+  }
+});
+</script>
