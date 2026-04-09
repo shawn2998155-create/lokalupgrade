@@ -509,7 +509,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
           <span data-de="Demo testen" data-en="Try Demo">Demo testen</span>
         </a>
       </div>
-    <!-- HelpCircle Demo -->
+      <!-- HelpCircle Demo -->
       <div class="glass ref-card reveal" style="transition-delay: 0.4s;">
         <div class="ref-logo">
           <i class="fa fa-handshake"></i>
@@ -519,8 +519,23 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
           Eine elegante Plattform für lokalen Skill-Tausch. Verbinde dich mit Experten in deiner Nähe, tausche Fähigkeiten, baue Vertrauen auf und erweitere dein Netzwerk – ohne Signup. Einfach, sicher und gemeinschaftlich.
         </p>
         <a href="https://helpcircle-m3wqsq7m.manus.space" class="btn btn-primary btn-sm" target="_blank">
-          <i class="fa fa-play"></i>
+           <i class="fa fa-play"></i>
           <span data-de="Demo testen" data-en="Try Demo">Demo testen</span>
+        </a>
+      </div>
+
+      <!-- Confidence Shoot-Out Game -->
+      <div class="glass ref-card reveal" style="transition-delay: 0.6s;">
+        <div class="ref-logo">
+          <i class="fa fa-crosshairs"></i>
+          <span>Confidence Shoot-Out</span>
+        </div>
+        <p class="ref-quote" data-de="Ein 2D-Arcade-Spiel zur Stärkung des Selbstvertrauens. Schieße auf negative Wörter, um deinen Confidence Score zu erhöhen, und sammle positive Power-Ups in diesem rasanten Shooter." data-en="A 2D arcade game to boost self-confidence. Shoot negative words to increase your Confidence Score and collect positive power-ups in this fast-paced shooter.">
+          Ein 2D-Arcade-Spiel zur Stärkung des Selbstvertrauens. Schieße auf negative Wörter, um deinen Confidence Score zu erhöhen, und sammle positive Power-Ups in diesem rasanten Shooter.
+        </p>
+        <a href="https://rosebud.ai/p/affirmation-archer" onclick="openGameModal()" class="btn btn-primary btn-sm">
+          <i class="fa fa-gamepad"></i>
+          <span data-de="Spiel starten" data-en="Play Game">Spiel starten</span>
         </a>
       </div>
   </div>
@@ -1105,6 +1120,38 @@ function submitForm() {
 }
 </style>
 
+<!-- Confidence Shoot-Out Modal -->
+<div id="gameModal" class="spark-modal">
+  <div class="spark-modal-content" style="max-width: 1000px; padding: 1rem;">
+    <button class="spark-modal-close" onclick="closeGameModal()">&times;</button>
+    <div class="spark-demo-header" style="margin-bottom: 1rem; padding-bottom: 0.5rem;">
+      <i class="fa fa-crosshairs"></i>
+      <h2 data-de="Confidence Shoot-Out" data-en="Confidence Shoot-Out">Confidence Shoot-Out</h2>
+    </div>
+    <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--r); background: #000;">
+      <iframe src="https://rosebud.ai/p/affirmation-archer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; fullscreen; keyboard"></iframe>
+    </div>
+    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+      <div>
+        <strong data-de="Highlights:" data-en="Highlights:">Highlights:</strong>
+        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.3rem;">
+          <li data-de="2D Arcade Core Loop" data-en="2D Arcade Core Loop">2D Arcade Core Loop</li>
+          <li data-de="Negative Wörter sind Ziele" data-en="Negative words are targets">Negative Wörter sind Ziele</li>
+          <li data-de="Positive Wörter geben Boni" data-en="Positive words give bonuses">Positive Wörter geben Boni</li>
+        </ul>
+      </div>
+      <div>
+        <strong data-de="Feedback:" data-en="Feedback:">Feedback:</strong>
+        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.3rem;">
+          <li data-de="Satisfying Hit Feedback" data-en="Satisfying Hit Feedback">Satisfying Hit Feedback</li>
+          <li data-de="Steigender Schwierigkeitsgrad" data-en="Increasing difficulty">Steigender Schwierigkeitsgrad</li>
+          <li data-de="Soundeffekte & Partikel" data-en="Sound effects & particles">Soundeffekte & Partikel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="sparkModal" class="spark-modal">
   <div class="spark-modal-content">
     <button class="spark-modal-close" onclick="closeSparkDemo()">&times;</button>
@@ -1212,6 +1259,16 @@ function submitForm() {
 </div>
 
 <script>
+function openGameModal() {
+  document.getElementById('gameModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGameModal() {
+  document.getElementById('gameModal').classList.remove('open');
+  document.body.style.overflow = 'auto';
+}
+
 function openSparkDemo() {
   document.getElementById('sparkModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1245,6 +1302,12 @@ function switchSparkTab(tabName) {
 }
 
 // Close modal when clicking outside
+document.getElementById('gameModal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeGameModal();
+  }
+});
+
 document.getElementById('sparkModal')?.addEventListener('click', function(e) {
   if (e.target === this) {
     closeSparkDemo();
@@ -1254,6 +1317,7 @@ document.getElementById('sparkModal')?.addEventListener('click', function(e) {
 // Close modal on Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
+    closeGameModal();
     closeSparkDemo();
   }
 });
