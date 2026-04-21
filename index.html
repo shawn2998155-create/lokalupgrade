@@ -95,6 +95,21 @@ section{position:relative;overflow:hidden}
 .lang-opt:hover{background:rgba(255,255,255,.07)}
 .lang-opt.active{color:var(--blue)}
 
+/* === NAV DROPDOWN === */
+.nav-dropdown-wrap{position:relative}
+.nav-dropdown-wrap > a{display:flex;align-items:center;gap:.3rem;padding:.42rem .8rem;border-radius:99px;font-size:.85rem;font-weight:500;color:var(--muted);transition:var(--trans);cursor:pointer}
+.nav-dropdown-wrap > a:hover{color:var(--text);background:rgba(255,255,255,.07)}
+.nav-dropdown-wrap > a .nav-chevron{font-size:.6rem;transition:transform var(--trans)}
+.nav-dropdown-wrap:hover > a{color:var(--text);background:rgba(255,255,255,.07)}
+.nav-dropdown-wrap:hover > a .nav-chevron{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px) scale(.96);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);min-width:230px;box-shadow:0 20px 50px rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:var(--trans);overflow:hidden}
+.nav-dropdown-wrap:hover .nav-dropdown-menu{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:all}
+.nav-dropdown-item{display:flex;align-items:center;gap:.75rem;padding:.8rem 1.1rem;font-size:.83rem;font-weight:500;color:var(--muted);transition:background .2s,color .2s}
+.nav-dropdown-item:hover{background:rgba(61,159,255,.08);color:var(--text)}
+.nav-dropdown-item i{font-size:.85rem;color:var(--blue);width:16px;text-align:center}
+.nav-dropdown-arrow{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:6px;overflow:hidden}
+.nav-dropdown-arrow::after{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:var(--bg2);border:1px solid var(--border);border-radius:2px}
+
 /* === HAMBURGER === */
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .hamburger span{display:block;width:23px;height:2px;background:var(--text);border-radius:2px;transition:var(--trans)}
@@ -252,6 +267,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
   <button class="mobile-close" onclick="closeMobile()"><i class="fa fa-times"></i></button>
   <a href="#start" onclick="closeMobile()" data-de="Start" data-en="Home">Start</a>
   <a href="#leistungen" onclick="closeMobile()" data-de="Leistungen" data-en="Services">Leistungen</a>
+  <a href="ai-anwendungskurse.html" onclick="closeMobile()" data-de="AI-Kurse" data-en="AI Courses" style="font-size:1.4rem;color:var(--blue)">AI-Anwendungskurse</a>
   <a href="#ueber-mich" onclick="closeMobile()" data-de="Über mich" data-en="About">Über mich</a>
   <a href="#referenzen" onclick="closeMobile()" data-de="Referenzen" data-en="References">Referenzen</a>
   <a href="#kontakt" onclick="closeMobile()" data-de="Kontakt" data-en="Contact">Kontakt</a>
@@ -265,6 +281,19 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
       <div class="nav-links">
         <a href="#start" data-de="Start" data-en="Home">Start</a>
         <a href="#leistungen" data-de="Leistungen" data-en="Services">Leistungen</a>
+        <div class="nav-dropdown-wrap">
+          <a data-de="Klassen &amp; Events" data-en="Classes &amp; Events">
+            Klassen &amp; Events
+            <i class="fa fa-chevron-down nav-chevron"></i>
+          </a>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-arrow"></div>
+            <a href="ai-anwendungskurse.html" class="nav-dropdown-item">
+              <i class="fa fa-brain"></i>
+              <span data-de="AI-Anwendungskurse (Prompt Engineering)" data-en="AI Application Courses (Prompt Engineering)">AI-Anwendungskurse (Prompt Engineering)</span>
+            </a>
+          </div>
+        </div>
         <a href="#ueber-mich" data-de="Über mich" data-en="About">Über mich</a>
         <a href="#referenzen" data-de="Referenzen" data-en="References">Referenzen</a>
         <a href="#kontakt" data-de="Kontakt" data-en="Contact">Kontakt</a>
@@ -382,8 +411,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
 
         <div class="glass service-card reveal" style="transition-delay:.16s">
           <div class="service-icon"><i class="fa fa-coins"></i></div>
-          <h3 data-de="Google Sichtbarkeit für lokale Unternehmen (inkl. Website)" data-en="Google visibility for local businesses (including website)">Google Sichtbarkeit für lokale Unternehmen (inkl. Website)</h3>
-          <p data-de="Ich helfe lokalen Unternehmen, bei Google gefunden zu werden und mehr Anfragen zu erhalten." data-en="I help local businesses get found on Google and receive more inquiries..">Ich helfe lokalen Unternehmen, bei Google gefunden zu werden und mehr Anfragen zu erhalten.</p>
+          <h3 data-de="Digital Finance Wissen" data-en="Digital Finance Knowledge">Digital Finance Wissen</h3>
+          <p data-de="Verständliche Wissensvermittlung zu digitalen Finanzen – für fundierte Entscheidungen im digitalen Zeitalter." data-en="Clear knowledge transfer on digital finance – for informed decisions in the digital age.">Verständliche Wissensvermittlung zu digitalen Finanzen – für fundierte Entscheidungen im digitalen Zeitalter.</p>
         </div>
 
         <div class="glass service-card reveal" style="transition-delay:.24s">
@@ -488,15 +517,28 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
         <p class="ref-quote" data-de="&ldquo;Mit der Unterstützung von LokalUpgrade konnten wir unsere digitale Präsenz gezielt ausbauen und messbare Resultate erzielen – schnell, unkompliziert und praxisnah.&rdquo;" data-en="&ldquo;With the support of LokalUpgrade we were able to strategically expand our digital presence and achieve measurable results – quickly, easily and practically.&rdquo;">
           &ldquo;Mit der Unterstützung von LokalUpgrade konnten wir unsere digitale Präsenz gezielt ausbauen und messbare Resultate erzielen – schnell, unkompliziert und praxisnah.&rdquo;
         </p>
-                
         <a href="https://www.hightechsauber.com" target="_blank" class="btn btn-ghost btn-sm">
-          <i class="fa fa-external-mitte-alt"></i>
+          <i class="fa fa-external-link-alt"></i>
+          <span data-de="Webseite besuchen" data-en="Visit Website">Webseite besuchen</span>
+        </a>
+      </div>
+
+      <div class="glass ref-card reveal" style="transition-delay: 0.1s;">
+        <div class="ref-logo">
+          <i class="fa fa-star"></i>
+          <span>povgram.com</span>
+        </div>
+        <p class="ref-quote" data-de="&ldquo; Erlebe das Leben durch die Augen anderer.&rdquo;" data-en="&ldquo;Experience life through others' eyes.&rdquo;">
+          &ldquo;Erlebe das Leben durch die Augen anderer.&rdquo;
+        </p>
+        <a href="https://www.povgram.com" target="_blank" class="btn btn-ghost btn-sm">
+          <i class="fa fa-external-link-alt"></i>
           <span data-de="Webseite besuchen" data-en="Visit Website">Webseite besuchen</span>
         </a>
       </div>
 
       <!-- Spark AI Companion Demo -->
-      <div class="glass ref-card reveal" style="transition-delay: 0.2s;">
+      <div class="glass ref-card reveal" style="transition-delay: 0.3s;">
         <div class="ref-logo">
           <i class="fa fa-robot"></i>
           <span>Spark – AI Companion</span>
@@ -510,7 +552,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
         </a>
       </div>
       <!-- HelpCircle Demo -->
-      <div class="glass ref-card reveal" style="transition-delay: 0.4s;">
+      <div class="glass ref-card reveal" style="transition-delay: 0.5s;">
         <div class="ref-logo">
           <i class="fa fa-handshake"></i>
           <span>HelpCircle – Skill Exchange</span>
@@ -525,7 +567,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
       </div>
 
       <!-- Confidence Shoot-Out Game -->
-      <div class="glass ref-card reveal" style="transition-delay: 0.6s;">
+      <div class="glass ref-card reveal" style="transition-delay: 0.7s;">
         <div class="ref-logo">
           <i class="fa fa-crosshairs"></i>
           <span>Confidence Shoot-Out</span>
@@ -540,7 +582,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
       </div>
   </div>
 </section>
-
 
 <!-- ===================== KONTAKT ===================== -->
 <section id="kontakt">
@@ -558,10 +599,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
             <div class="contact-icon"><i class="fa fa-phone"></i></div>
             <div class="contact-detail-text">
               <strong data-de="Telefon" data-en="Phone">Telefon</strong>
-              <span>+41 PR OTE CTED</span>
+              <span>+41 PROTECTED</span>
             </div>
           </div>
-          <div class="contact-detail">
+         <div class="contact-detail">
             <div class="contact-icon"><i class="fa fa-envelope"></i></div>
             <div class="contact-detail-text">
               <strong>E-Mail</strong>
@@ -587,7 +628,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
             <a href="https://wa.me/41766267205" target="_blank" class="btn btn-wa btn-sm">
               <i class="fab fa-whatsapp"></i> WhatsApp            
             </a>
-            <a href="mailto:lokalupgrade@outlook.com" class="btn btn-ghost btn-sm">
+            <a href="/cdn-cgi/l/email-protection#14787b7f757861647366757071547b6160787b7b7f3a777b79" class="btn btn-ghost btn-sm">
               <i class="fa fa-envelope"></i> E-Mail
             </a>
            
@@ -714,7 +755,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ==================== LANGUAGE SYSTEM ====================
 const currentLang = { val: 'de' };
 
@@ -1308,17 +1349,4 @@ document.getElementById('gameModal')?.addEventListener('click', function(e) {
   }
 });
 
-document.getElementById('sparkModal')?.addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeSparkDemo();
-  }
-});
-
-// Close modal on Escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeGameModal();
-    closeSparkDemo();
-  }
-});
-</script>
+document.getElementById(
