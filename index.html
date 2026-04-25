@@ -161,8 +161,8 @@ section{position:relative;overflow:hidden}
 
 /* === ABOUT === */
 #ueber-mich{background:var(--bg)}
-.about-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:4.5rem;align-items:center}
-.about-photo-wrap{position:relative}
+.about-inner{display:grid;grid-template-columns:0.8fr 1.4fr;gap:4.5rem;align-items:center}
+.about-photo-wrap{position:relative;max-width:320px;margin:0 auto}
 .about-photo-frame{border-radius:24px;overflow:hidden;position:relative}
 .about-photo-frame img{width:100%;height:auto;display:block;filter:brightness(.95) saturate(1.05)}
 .about-photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(6,8,15,.5))}
@@ -459,8 +459,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
         <div class="about-content reveal" style="transition-delay:.1s">
           <div class="label" data-de="Ihr Sparringspartner" data-en="Your Sparring Partner">Ihr Sparringspartner</div>
           <h2 data-de="Shun Liang –<br>Klarheit. Praxis. Wirkung." data-en="Shun Liang –<br>Clarity. Practice. Impact.">Shun Liang –<br>Klarheit. Praxis. Wirkung.</h2>
-          <p data-de="Als Maschinenbauingenieur mit EMBA und Weiterbildungen in Digital Transformation und KI bringe ich technisches Know-how mit strategischem Denken zusammen – für pragmatische Lösungen, die wirklich funktionieren." data-en="As a mechanical engineer with an EMBA and further education in Digital Transformation and AI, I combine technical know-how with strategic thinking – for pragmatic solutions that truly work.">
-            Als Maschinenbauingenieur mit EMBA und Weiterbildungen in Digital Transformation und KI bringe ich technisches Know-how mit strategischem Denken zusammen – für pragmatische Lösungen, die wirklich funktionieren.
+         
           </p>
 
           <ul class="qual-list">
@@ -481,13 +480,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
               <span data-de="Zertifizierung: Artificial Intelligence in Project Management" data-en="Certification: Artificial Intelligence in Project Management">Zertifizierung: Artificial Intelligence in Project Management</span>
             </li>
           </ul>
-
-          <div class="focus-tags">
-            <span class="focus-tag" data-de="Klarheit" data-en="Clarity">Klarheit</span>
-            <span class="focus-tag" data-de="Praxisnähe" data-en="Pragmatism">Praxisnähe</span>
-            <span class="focus-tag" data-de="Persönliche Begleitung" data-en="Personal Guidance">Persönliche Begleitung</span>
-            <span class="focus-tag" data-de="Rapperswil / Zürichsee" data-en="Rapperswil / Lake Zurich">Rapperswil / Zürichsee</span>
-          </div>
 
           <a href="https://www.linkedin.com/in/shunliang1/" target="_blank" class="btn btn-ghost">
             <i class="fab fa-linkedin"></i>
@@ -518,6 +510,20 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
           &ldquo;Mit der Unterstützung von LokalUpgrade konnten wir unsere digitale Präsenz gezielt ausbauen und messbare Resultate erzielen – schnell, unkompliziert und praxisnah.&rdquo;
         </p>
         <a href="https://www.hightechsauber.com" target="_blank" class="btn btn-ghost btn-sm">
+          <i class="fa fa-external-link-alt"></i>
+          <span data-de="Webseite besuchen" data-en="Visit Website">Webseite besuchen</span>
+        </a>
+      </div>
+
+      <div class="glass ref-card reveal" style="transition-delay: 0.05s;">
+        <div class="ref-logo">
+          <i class="fa fa-star"></i>
+          <span>clean-link.ch</span>
+        </div>
+        <p class="ref-quote" data-de="&ldquo;Professionelle Reinigungslösungen mit digitalem Vorsprung. LokalUpgrade hat uns geholfen, unsere Prozesse zu optimieren.&rdquo;" data-en="&ldquo;Professional cleaning solutions with a digital edge. LokalUpgrade helped us optimize our processes.&rdquo;">
+          &ldquo;Professionelle Reinigungslösungen mit digitalem Vorsprung. LokalUpgrade hat uns geholfen, unsere Prozesse zu optimieren.&rdquo;
+        </p>
+        <a href="https://www.clean-link.ch" target="_blank" class="btn btn-ghost btn-sm">
           <i class="fa fa-external-link-alt"></i>
           <span data-de="Webseite besuchen" data-en="Visit Website">Webseite besuchen</span>
         </a>
@@ -566,20 +572,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0}
         </a>
       </div>
 
-      <!-- Confidence Shoot-Out Game -->
-      <div class="glass ref-card reveal" style="transition-delay: 0.7s;">
-        <div class="ref-logo">
-          <i class="fa fa-crosshairs"></i>
-          <span>Confidence Shoot-Out</span>
-        </div>
-        <p class="ref-quote" data-de="Ein 2D-Arcade-Spiel zur Stärkung des Selbstvertrauens. Schieße auf negative Wörter, um deinen Confidence Score zu erhöhen, und sammle positive Power-Ups in diesem rasanten Shooter." data-en="A 2D arcade game to boost self-confidence. Shoot negative words to increase your Confidence Score and collect positive power-ups in this fast-paced shooter.">
-          Ein 2D-Arcade-Spiel zur Stärkung des Selbstvertrauens. Schieße auf negative Wörter, um deinen Confidence Score zu erhöhen, und sammle positive Power-Ups in diesem rasanten Shooter.
-        </p>
-        <a href="https://rosebud.ai/p/affirmation-archer" onclick="openGameModal()" class="btn btn-primary btn-sm">
-          <i class="fa fa-gamepad"></i>
-          <span data-de="Spiel starten" data-en="Play Game">Spiel starten</span>
-        </a>
-      </div>
+
   </div>
 </section>
 
@@ -1161,36 +1154,7 @@ function submitForm() {
 }
 </style>
 
-<!-- Confidence Shoot-Out Modal -->
-<div id="gameModal" class="spark-modal">
-  <div class="spark-modal-content" style="max-width: 1000px; padding: 1rem;">
-    <button class="spark-modal-close" onclick="closeGameModal()">&times;</button>
-    <div class="spark-demo-header" style="margin-bottom: 1rem; padding-bottom: 0.5rem;">
-      <i class="fa fa-crosshairs"></i>
-      <h2 data-de="Confidence Shoot-Out" data-en="Confidence Shoot-Out">Confidence Shoot-Out</h2>
-    </div>
-    <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--r); background: #000;">
-      <iframe src="https://rosebud.ai/p/affirmation-archer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; fullscreen; keyboard"></iframe>
-    </div>
-    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-      <div>
-        <strong data-de="Highlights:" data-en="Highlights:">Highlights:</strong>
-        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.3rem;">
-          <li data-de="2D Arcade Core Loop" data-en="2D Arcade Core Loop">2D Arcade Core Loop</li>
-          <li data-de="Negative Wörter sind Ziele" data-en="Negative words are targets">Negative Wörter sind Ziele</li>
-          <li data-de="Positive Wörter geben Boni" data-en="Positive words give bonuses">Positive Wörter geben Boni</li>
-        </ul>
-      </div>
-      <div>
-        <strong data-de="Feedback:" data-en="Feedback:">Feedback:</strong>
-        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.3rem;">
-          <li data-de="Satisfying Hit Feedback" data-en="Satisfying Hit Feedback">Satisfying Hit Feedback</li>
-          <li data-de="Steigender Schwierigkeitsgrad" data-en="Increasing difficulty">Steigender Schwierigkeitsgrad</li>
-          <li data-de="Soundeffekte & Partikel" data-en="Sound effects & particles">Soundeffekte & Partikel</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+
 </div>
 
 <div id="sparkModal" class="spark-modal">
@@ -1300,15 +1264,7 @@ function submitForm() {
 </div>
 
 <script>
-function openGameModal() {
-  document.getElementById('gameModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
 
-function closeGameModal() {
-  document.getElementById('gameModal').classList.remove('open');
-  document.body.style.overflow = 'auto';
-}
 
 function openSparkDemo() {
   document.getElementById('sparkModal').classList.add('open');
@@ -1342,11 +1298,6 @@ function switchSparkTab(tabName) {
   event.target.classList.add('active');
 }
 
-// Close modal when clicking outside
-document.getElementById('gameModal')?.addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeGameModal();
-  }
-});
+
 
 document.getElementById(
